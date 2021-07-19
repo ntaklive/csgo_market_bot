@@ -20,7 +20,29 @@ Language: [english, russian, ...] - Language that is shown when updating.
 Country: [RU, BY, ...] - I don't know what it does...
 Filter: [sticker, ...] - Search filter.
 ```
-
+#### Currency codes:
+1 - $;
+2 - £;
+3 - €;
+4 - CHF;
+5 - RUB;
+6 - zł;
+7 - R$;
+8 - ¥;
+9 - kr;
+10 - Rp;
+11 - RM;
+12 - P;
+13 - S$;
+14 - ฿;
+15 - ₫;
+16 - ₩;
+17 - TL;
+18 - ₴;
+19 - Mex$;
+20 - CDN$;
+21 - A$;
+and other...
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
