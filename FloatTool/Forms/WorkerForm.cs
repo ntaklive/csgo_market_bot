@@ -78,7 +78,7 @@ namespace FloatTool.Forms
                     const string ipTestUrl = "http://icanhazip.com/";
                     _ = Task.Factory.StartNew(async () =>
                     {
-                        var ip = await HttpClient.GetStringAsync(ipTestUrl);
+                        var ip = (await HttpClient.GetStringAsync(ipTestUrl)).TrimEnd(' ');
                         if (ip == _parameters.Proxy.ToString())
                         {
                             ProxyCheckThrobberImageBox.Invoke((MethodInvoker) delegate
