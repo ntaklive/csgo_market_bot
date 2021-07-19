@@ -70,12 +70,12 @@ namespace FloatTool.Forms
                 Text = workerLabel
             };
 
+            // OnFormClosed Event subscribe
             void OnWorkerClosed(object o, FormClosedEventArgs args)
             {
                 worker.FormClosed -= OnWorkerClosed;
                 _workersDictionary.Remove(item.Label);
             }
-
             worker.FormClosed += OnWorkerClosed;
 
             return worker;

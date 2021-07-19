@@ -125,7 +125,7 @@ namespace FloatTool.Forms
             }
             // --> *
 
-            _browser.LoadingStateChanged += async (_, _) =>
+            _browser.LoadingStateChanged += (_, _) =>
             {
                 if (_browser.IsLoading == false)
                 {
@@ -133,7 +133,6 @@ namespace FloatTool.Forms
                         // Running on the UI thread
                         Controls.Remove(LoadingPanel);
                     });
-                    await ProcessAsync();
 
                     Log.Debug("[{0}]: Page '{1}' successfully loaded", this.Text, _browser.GetMainFrame().Url);
                 }
@@ -159,25 +158,39 @@ namespace FloatTool.Forms
 
         private async void ManualButton_Click(object sender, EventArgs e)
         {
-            await ProcessAsync();
+            try
+            {
+                await ProcessAsync();
+            }
+            catch (Exception exception)
+            {
+                Log.Warning(exception.ToString());
+            }
         }
 
         private async void AutoButton_Click(object sender, EventArgs e)
         {
-            _isAutoProcessing = true;
-
-            AutoButton.Hide();
-            StopButton.Show();
-
-            var delayValue = _settings.Delay;
-            while (_isAutoProcessing)
+            try
             {
-                await ProcessAsync();
-                await Task.Delay(delayValue);
-            }
+                _isAutoProcessing = true;
 
-            AutoButton.Show();
-            StopButton.Hide();
+                AutoButton.Hide();
+                StopButton.Show();
+
+                var delayValue = _settings.Delay;
+                while (_isAutoProcessing)
+                {
+                    await ProcessAsync();
+                    await Task.Delay(delayValue);
+                }
+
+                AutoButton.Show();
+                StopButton.Hide();
+            }
+            catch (Exception exception)
+            {
+                Log.Warning(exception.ToString());
+            }
         }
 
         private void StopButton_Click(object sender, EventArgs e)
@@ -192,6 +205,8 @@ namespace FloatTool.Forms
             {
                 _parameters.Proxy.IsUsed = false;
             }
+
+            Log.Debug("[{0}]: Closed", Text);
         }
 
         public async Task ProcessAsync(CancellationToken token = default)
@@ -199,61 +214,68 @@ namespace FloatTool.Forms
             _browser.JavascriptMessageReceived += JavascriptMessageReceivedHandler;
             async void JavascriptMessageReceivedHandler(object o, JavascriptMessageReceivedEventArgs eventArgs)
             {
-                var parseScriptResponse = JsonConvert.DeserializeObject<ParserScriptResponse>((string)eventArgs.Message);
-
-                var itemsBuyData = new List<ListingData>();
-                for (var i = 0; i < parseScriptResponse!.Links.Count; i++)
+                try
                 {
-                    var link = parseScriptResponse!.Links[i];
-                    var listingInfo = await _floatApi.ParseInfo(link);
+                    var parseScriptResponse = JsonConvert.DeserializeObject<ParserScriptResponse>((string)eventArgs.Message);
 
-                    itemsBuyData.Add(new ListingData
+                    var itemsBuyData = new List<ListingData>();
+                    for (var i = 0; i < parseScriptResponse!.Links.Count; i++)
                     {
-                        ListingId = parseScriptResponse.IdList[i],
-                        FloatValue = listingInfo.FloatValue,
-                        Price = parseScriptResponse.Prices[i]
-                    });
-                }
+                        var link = parseScriptResponse!.Links[i];
+                        var listingInfo = await _floatApi.ParseInfo(link);
 
-                foreach (var data in itemsBuyData)
-                {
-                    if (data.ListingId == 0 || data.Price == null) continue;
-
-                    var isValid = false;
-                    if (data.FloatValue <= _parameters.Float && data.Price <= _parameters.Price)
-                    {
-                        isValid = true;
-
-                        if (_isWorking == false) return;
-
-                        // Auto Buy
-                        if (AutoBuyCheckbox.Checked)
+                        itemsBuyData.Add(new ListingData
                         {
-                            var buyListingScript = ScriptsBuilder.BuildBuyListingScript(new BuyListingScriptParams
-                            {
-                                ListingId = data.ListingId,
-                                BuyNowDelay = _settings.BuyScriptSettings.BuyNowDelay,
-                                AgreeDelay = _settings.BuyScriptSettings.AgreeDelay,
-                                PurchaseDelay = _settings.BuyScriptSettings.PurchaseDelay,
-                                CloseWindowDelay = _settings.BuyScriptSettings.CloseWindowDelay
-                            });
-                            _browser.GetMainFrame().ExecuteJavaScriptAsync(buyListingScript);
-                            Log.Debug("[{0}]: Notification ='{1}' Data='{2}'", this.Text, "Successfully purchased", data);
-                            continue;
-                        }
-
-                        // Notificator
-                        var notificatorScriptParams = new NotificatorScriptParams
-                        {
-                            ListingId = data.ListingId
-                        };
-                        var notificatorScript = ScriptsBuilder.BuildNotificatorScript(notificatorScriptParams);
-                        _browser.GetMainFrame().ExecuteJavaScriptAsync(notificatorScript);
+                            ListingId = parseScriptResponse.IdList[i],
+                            FloatValue = listingInfo.FloatValue,
+                            Price = parseScriptResponse.Prices[i]
+                        });
                     }
-                    Log.Debug("[{0}]: IsValid='{1}' Data='{2}'", this.Text, isValid, data);
+
+                    foreach (var data in itemsBuyData)
+                    {
+                        if (data.ListingId == 0 || data.Price == null) continue;
+
+                        var isValid = false;
+                        if (data.FloatValue <= _parameters.Float && data.Price <= _parameters.Price)
+                        {
+                            isValid = true;
+
+                            if (_isWorking == false) return;
+
+                            // Auto Buy
+                            if (AutoBuyCheckbox.Checked)
+                            {
+                                var buyListingScript = ScriptsBuilder.BuildBuyListingScript(new BuyListingScriptParams
+                                {
+                                    ListingId = data.ListingId,
+                                    BuyNowDelay = _settings.BuyScriptSettings.BuyNowDelay,
+                                    AgreeDelay = _settings.BuyScriptSettings.AgreeDelay,
+                                    PurchaseDelay = _settings.BuyScriptSettings.PurchaseDelay,
+                                    CloseWindowDelay = _settings.BuyScriptSettings.CloseWindowDelay
+                                });
+                                _browser.GetMainFrame().ExecuteJavaScriptAsync(buyListingScript);
+                                Log.Debug("[{0}]: Notification ='{1}' Data='{2}'", this.Text, "Successfully purchased", data);
+                                continue;
+                            }
+
+                            // Notificator
+                            var notificatorScriptParams = new NotificatorScriptParams
+                            {
+                                ListingId = data.ListingId
+                            };
+                            var notificatorScript = ScriptsBuilder.BuildNotificatorScript(notificatorScriptParams);
+                            _browser.GetMainFrame().ExecuteJavaScriptAsync(notificatorScript);
+                        }
+                        Log.Debug("[{0}]: IsValid='{1}' Data='{2}'", this.Text, isValid, data);
+                    }
+                    _browser.JavascriptMessageReceived -= JavascriptMessageReceivedHandler;
+                    _isWorking = false;
                 }
-                _browser.JavascriptMessageReceived -= JavascriptMessageReceivedHandler;
-                _isWorking = false;
+                catch (Exception exception)
+                {
+                    Log.Warning(exception.ToString());
+                }
             }
 
             _browser.GetMainFrame().ExecuteJavaScriptAsync(_parserScript);
