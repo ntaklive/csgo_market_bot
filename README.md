@@ -12,6 +12,10 @@ A program designed to automate the purchase of CS:GO weapons on the steam market
 3) ...
 4) Profit!
 
+## How do I sign in to my account? 
+1) Go to "settings" and click "account".
+2) Log in to your account.
+
 ## Parser Script Settings:
 ```
 Count: [10-100] - The number of lots received during the update.
