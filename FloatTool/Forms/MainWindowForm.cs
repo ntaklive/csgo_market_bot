@@ -179,23 +179,6 @@ namespace FloatTool.Forms
 
             // Proxy status 
             // --> *
-
-            // TODO Test Items. DELETE IN RELEASE
-            try
-            {
-                //_weaponListControl.Append(await CreateWeapon(1.0, 0.05, "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M3392883409794140126A17691028751D153863890392345026"));
-                //_weaponListControl.Append(await CreateWeapon(0.20, 0.04, "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M4421956023422947223A22915843709D10089908198510185755"));
-                //_weaponListControl.Append(await CreateWeapon(0.20, 0.04, "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M3391757509892630345A22911757775D622278252943194349"));
-                //_weaponListControl.Append(await CreateWeapon(0.20, 0.04, "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M3396260657094544509A22898203058D9533775475576218754"));
-                //_weaponListControl.Append(await CreateWeapon(0.20, 0.04, "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M4425333723144999045A22917249003D14700987699944750468"));
-                //_weaponListControl.Append(await CreateWeapon(0.20, 0.04, "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M3388379810177071642A22913063945D4783388403712633444"));
-                //_weaponListControl.Append(await CreateWeapon(0.20, 0.04, "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M3405265773955603400A17963082759D3170620588417471182"));
-                //_weaponListControl.Append(await CreateWeapon(0.20, 0.04, "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M4096570949107167291A22784928635D7497629181254235143"));
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.ToString());
-            }
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
