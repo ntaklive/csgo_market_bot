@@ -118,10 +118,9 @@ namespace FloatTool.Forms
                 var link = ParseTool.ParseLink(LinkTextBox.Text);
                 var floatValue = ParseTool.ParseFloat(FloatTextBox.Text);
                 var priceValue = ParseTool.ParsePrice(PriceTextBox.Text);
-
                 var weapon = await CreateWeapon(floatValue, priceValue, link);
 
-                if (GlobalWeaponsList.Weapons.Contains(weapon, Weapon.EqualityComparer))
+                if (ModifierKeys != Keys.Control && GlobalWeaponsList.Weapons.Contains(weapon, Weapon.EqualityComparer))
                 {
                     throw new ArgumentException($"Weapon '{weapon.Label}' already exists");
                 }
