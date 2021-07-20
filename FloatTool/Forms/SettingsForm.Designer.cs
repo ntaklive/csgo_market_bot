@@ -571,8 +571,8 @@ namespace FloatTool.Forms
             // 
             // WorkerDefaultSettingsGroupBox
             // 
-            this.WorkerDefaultSettingsGroupBox.Controls.Add(this.WorkerDefaultSettingsMaxDelayTextBox);
             this.WorkerDefaultSettingsGroupBox.Controls.Add(this.WorkerDefaultSettingsMaxDelayLabel);
+            this.WorkerDefaultSettingsGroupBox.Controls.Add(this.WorkerDefaultSettingsMaxDelayTextBox);
             this.WorkerDefaultSettingsGroupBox.Controls.Add(this.WorkerDefaultSettingsMinDelayLabel);
             this.WorkerDefaultSettingsGroupBox.Controls.Add(this.WorkerDefaultSettingsDelayLabel);
             this.WorkerDefaultSettingsGroupBox.Controls.Add(this.WorkerDefaultSettingsMinDelayTextBox);
@@ -667,7 +667,7 @@ namespace FloatTool.Forms
             // 
             this.WorkerDefaultSettingsMinDelayLabel.AutoSize = true;
             this.WorkerDefaultSettingsMinDelayLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WorkerDefaultSettingsMinDelayLabel.Location = new System.Drawing.Point(56, 47);
+            this.WorkerDefaultSettingsMinDelayLabel.Location = new System.Drawing.Point(56, 88);
             this.WorkerDefaultSettingsMinDelayLabel.Name = "WorkerDefaultSettingsMinDelayLabel";
             this.WorkerDefaultSettingsMinDelayLabel.Size = new System.Drawing.Size(29, 13);
             this.WorkerDefaultSettingsMinDelayLabel.TabIndex = 11;
@@ -677,7 +677,7 @@ namespace FloatTool.Forms
             // 
             this.WorkerDefaultSettingsMaxDelayLabel.AutoSize = true;
             this.WorkerDefaultSettingsMaxDelayLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WorkerDefaultSettingsMaxDelayLabel.Location = new System.Drawing.Point(138, 47);
+            this.WorkerDefaultSettingsMaxDelayLabel.Location = new System.Drawing.Point(140, 89);
             this.WorkerDefaultSettingsMaxDelayLabel.Name = "WorkerDefaultSettingsMaxDelayLabel";
             this.WorkerDefaultSettingsMaxDelayLabel.Size = new System.Drawing.Size(30, 13);
             this.WorkerDefaultSettingsMaxDelayLabel.TabIndex = 12;
@@ -715,6 +715,8 @@ namespace FloatTool.Forms
             this.Controls.Add(this.ApplyOperationButton);
             this.Controls.Add(this.ParserSettingsGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.Sizable = false;
             this.Text = "Global Settings";

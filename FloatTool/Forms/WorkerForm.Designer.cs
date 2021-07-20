@@ -89,9 +89,10 @@ namespace FloatTool.Forms
             // 
             // MenuPanel
             // 
+            this.MenuPanel.Controls.Add(this.MaxDelayLabel);
+            this.MenuPanel.Controls.Add(this.MinDelayLabel);
             this.MenuPanel.Controls.Add(this.MaxDelayTextBox);
             this.MenuPanel.Controls.Add(this.StopButton);
-            this.MenuPanel.Controls.Add(this.LoadingPanel);
             this.MenuPanel.Controls.Add(this.ManualButton);
             this.MenuPanel.Controls.Add(this.MinDelayTextBox);
             this.MenuPanel.Controls.Add(this.AutoButton);
@@ -144,6 +145,8 @@ namespace FloatTool.Forms
             // BrowserPanel
             // 
             this.BrowserPanel.Controls.Add(this.DataLabel);
+            this.BrowserPanel.Controls.Add(this.LoadingPanel);
+            this.BrowserPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BrowserPanel.Location = new System.Drawing.Point(0, 107);
             this.BrowserPanel.Name = "BrowserPanel";
             this.BrowserPanel.Size = new System.Drawing.Size(468, 441);
@@ -179,10 +182,11 @@ namespace FloatTool.Forms
             // LoadingPanel
             // 
             this.LoadingPanel.Controls.Add(this.ThrobberPictureBox);
-            this.LoadingPanel.Location = new System.Drawing.Point(471, 0);
+            this.LoadingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoadingPanel.Location = new System.Drawing.Point(0, 0);
             this.LoadingPanel.Margin = new System.Windows.Forms.Padding(0);
             this.LoadingPanel.Name = "LoadingPanel";
-            this.LoadingPanel.Size = new System.Drawing.Size(468, 484);
+            this.LoadingPanel.Size = new System.Drawing.Size(468, 441);
             this.LoadingPanel.TabIndex = 5;
             // 
             // ThrobberPictureBox
@@ -192,7 +196,7 @@ namespace FloatTool.Forms
             this.ThrobberPictureBox.Image = global::FloatTool.Properties.Resources.throbber;
             this.ThrobberPictureBox.Location = new System.Drawing.Point(0, 0);
             this.ThrobberPictureBox.Name = "ThrobberPictureBox";
-            this.ThrobberPictureBox.Size = new System.Drawing.Size(468, 484);
+            this.ThrobberPictureBox.Size = new System.Drawing.Size(468, 441);
             this.ThrobberPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.ThrobberPictureBox.TabIndex = 0;
             this.ThrobberPictureBox.TabStop = false;
@@ -230,7 +234,7 @@ namespace FloatTool.Forms
             // 
             this.MaxDelayLabel.AutoSize = true;
             this.MaxDelayLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MaxDelayLabel.Location = new System.Drawing.Point(256, 51);
+            this.MaxDelayLabel.Location = new System.Drawing.Point(248, 27);
             this.MaxDelayLabel.Name = "MaxDelayLabel";
             this.MaxDelayLabel.Size = new System.Drawing.Size(30, 13);
             this.MaxDelayLabel.TabIndex = 16;
@@ -240,7 +244,7 @@ namespace FloatTool.Forms
             // 
             this.MinDelayLabel.AutoSize = true;
             this.MinDelayLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MinDelayLabel.Location = new System.Drawing.Point(173, 51);
+            this.MinDelayLabel.Location = new System.Drawing.Point(165, 26);
             this.MinDelayLabel.Name = "MinDelayLabel";
             this.MinDelayLabel.Size = new System.Drawing.Size(29, 13);
             this.MinDelayLabel.TabIndex = 15;
@@ -272,9 +276,7 @@ namespace FloatTool.Forms
             this.Controls.Add(this.ProxyCheckThrobberImageBox);
             this.Controls.Add(this.CurrentIpLabel);
             this.Controls.Add(this.MenuPanel);
-            this.Controls.Add(this.MaxDelayLabel);
             this.Controls.Add(this.BrowserPanel);
-            this.Controls.Add(this.MinDelayLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WorkerForm";
             this.Padding = new System.Windows.Forms.Padding(0, 64, 0, 0);
@@ -289,7 +291,6 @@ namespace FloatTool.Forms
             ((System.ComponentModel.ISupportInitialize)(this.ThrobberPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProxyCheckThrobberImageBox)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
