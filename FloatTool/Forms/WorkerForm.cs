@@ -178,6 +178,9 @@ namespace FloatTool.Forms
             {
                 _isAutoProcessing = true;
 
+                MinDelayTextBox.Enabled = false;
+                MaxDelayTextBox.Enabled = false;
+
                 AutoButton.Hide();
                 StopButton.Show();
 
@@ -204,6 +207,9 @@ namespace FloatTool.Forms
 
                 AutoButton.Show();
                 StopButton.Hide();
+
+                MinDelayTextBox.Enabled = true;
+                MaxDelayTextBox.Enabled = true;
             }
             catch (Exception exception)
             {
@@ -214,6 +220,8 @@ namespace FloatTool.Forms
         private void StopButton_Click(object sender, EventArgs e)
         {
             _isAutoProcessing = false;
+            _isWorking = false;
+
             Log.Debug("[{0}]: Stopping... This may take some time", Text);
         }
 
@@ -305,6 +313,30 @@ namespace FloatTool.Forms
                 await Task.Delay(100, token);
             }
             Log.Debug("[{0}]: Listings have been successfully updated", Text);
+        }
+
+        private void MinDelayTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _settings.MinDelay = int.Parse(MinDelayTextBox.Text);
+            }
+            catch
+            {
+                MaterialMessageBox.Show("Invalid min delay value");
+            }
+        }
+
+        private void MaxDelayTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _settings.MaxDelay = int.Parse(MaxDelayTextBox.Text);
+            }
+            catch
+            {
+                MaterialMessageBox.Show("Invalid max delay value");
+            }
         }
     }
 }

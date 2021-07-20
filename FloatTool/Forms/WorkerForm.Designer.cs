@@ -140,6 +140,7 @@ namespace FloatTool.Forms
             this.MaxDelayTextBox.Text = "";
             this.MaxDelayTextBox.TrailingIcon = null;
             this.MaxDelayTextBox.UseTallSize = false;
+            this.MaxDelayTextBox.TextChanged += new System.EventHandler(this.MaxDelayTextBox_TextChanged);
             // 
             // StopButton
             // 
@@ -197,6 +198,7 @@ namespace FloatTool.Forms
             this.MinDelayTextBox.Text = "";
             this.MinDelayTextBox.TrailingIcon = null;
             this.MinDelayTextBox.UseTallSize = false;
+            this.MinDelayTextBox.TextChanged += new System.EventHandler(this.MinDelayTextBox_TextChanged);
             // 
             // BrowserPanel
             // 
