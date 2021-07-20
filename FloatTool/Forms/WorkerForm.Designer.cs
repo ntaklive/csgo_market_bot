@@ -34,7 +34,6 @@ namespace FloatTool.Forms
             this.AutoBuyCheckbox = new MaterialSkin.Controls.MaterialCheckbox();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.StopButton = new MaterialSkin.Controls.MaterialButton();
-            this.DelayTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.ManualButton = new MaterialSkin.Controls.MaterialButton();
             this.BrowserPanel = new System.Windows.Forms.Panel();
             this.DataLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -42,6 +41,10 @@ namespace FloatTool.Forms
             this.LoadingPanel = new System.Windows.Forms.Panel();
             this.ThrobberPictureBox = new System.Windows.Forms.PictureBox();
             this.ProxyCheckThrobberImageBox = new System.Windows.Forms.PictureBox();
+            this.MaxDelayTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.MaxDelayLabel = new System.Windows.Forms.Label();
+            this.MinDelayLabel = new System.Windows.Forms.Label();
+            this.MinDelayTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.MenuPanel.SuspendLayout();
             this.BrowserPanel.SuspendLayout();
             this.LoadingPanel.SuspendLayout();
@@ -72,7 +75,7 @@ namespace FloatTool.Forms
             // 
             this.AutoBuyCheckbox.AutoSize = true;
             this.AutoBuyCheckbox.Depth = 0;
-            this.AutoBuyCheckbox.Location = new System.Drawing.Point(268, 3);
+            this.AutoBuyCheckbox.Location = new System.Drawing.Point(334, 3);
             this.AutoBuyCheckbox.Margin = new System.Windows.Forms.Padding(0);
             this.AutoBuyCheckbox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.AutoBuyCheckbox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -86,9 +89,11 @@ namespace FloatTool.Forms
             // 
             // MenuPanel
             // 
+            this.MenuPanel.Controls.Add(this.MaxDelayTextBox);
             this.MenuPanel.Controls.Add(this.StopButton);
-            this.MenuPanel.Controls.Add(this.DelayTextBox);
+            this.MenuPanel.Controls.Add(this.LoadingPanel);
             this.MenuPanel.Controls.Add(this.ManualButton);
+            this.MenuPanel.Controls.Add(this.MinDelayTextBox);
             this.MenuPanel.Controls.Add(this.AutoButton);
             this.MenuPanel.Controls.Add(this.AutoBuyCheckbox);
             this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -116,25 +121,6 @@ namespace FloatTool.Forms
             this.StopButton.UseVisualStyleBackColor = true;
             this.StopButton.Visible = false;
             this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
-            // 
-            // DelayTextBox
-            // 
-            this.DelayTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DelayTextBox.Depth = 0;
-            this.DelayTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.DelayTextBox.Hint = "Delay";
-            this.DelayTextBox.LeadingIcon = null;
-            this.DelayTextBox.Location = new System.Drawing.Point(165, 3);
-            this.DelayTextBox.MaxLength = 50;
-            this.DelayTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.DelayTextBox.Multiline = false;
-            this.DelayTextBox.Name = "DelayTextBox";
-            this.DelayTextBox.Size = new System.Drawing.Size(100, 36);
-            this.DelayTextBox.TabIndex = 4;
-            this.DelayTextBox.Text = "";
-            this.DelayTextBox.TrailingIcon = null;
-            this.DelayTextBox.UseTallSize = false;
-            this.DelayTextBox.TextChanged += new System.EventHandler(this.DelayTextBox_TextChanged);
             // 
             // ManualButton
             // 
@@ -193,7 +179,7 @@ namespace FloatTool.Forms
             // LoadingPanel
             // 
             this.LoadingPanel.Controls.Add(this.ThrobberPictureBox);
-            this.LoadingPanel.Location = new System.Drawing.Point(0, 64);
+            this.LoadingPanel.Location = new System.Drawing.Point(471, 0);
             this.LoadingPanel.Margin = new System.Windows.Forms.Padding(0);
             this.LoadingPanel.Name = "LoadingPanel";
             this.LoadingPanel.Size = new System.Drawing.Size(468, 484);
@@ -222,16 +208,73 @@ namespace FloatTool.Forms
             this.ProxyCheckThrobberImageBox.TabStop = false;
             this.ProxyCheckThrobberImageBox.Visible = false;
             // 
+            // MaxDelayTextBox
+            // 
+            this.MaxDelayTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MaxDelayTextBox.Depth = 0;
+            this.MaxDelayTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.MaxDelayTextBox.Hint = "ms";
+            this.MaxDelayTextBox.LeadingIcon = null;
+            this.MaxDelayTextBox.Location = new System.Drawing.Point(255, 4);
+            this.MaxDelayTextBox.MaxLength = 50;
+            this.MaxDelayTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.MaxDelayTextBox.Multiline = false;
+            this.MaxDelayTextBox.Name = "MaxDelayTextBox";
+            this.MaxDelayTextBox.Size = new System.Drawing.Size(74, 36);
+            this.MaxDelayTextBox.TabIndex = 17;
+            this.MaxDelayTextBox.Text = "";
+            this.MaxDelayTextBox.TrailingIcon = null;
+            this.MaxDelayTextBox.UseTallSize = false;
+            // 
+            // MaxDelayLabel
+            // 
+            this.MaxDelayLabel.AutoSize = true;
+            this.MaxDelayLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MaxDelayLabel.Location = new System.Drawing.Point(256, 51);
+            this.MaxDelayLabel.Name = "MaxDelayLabel";
+            this.MaxDelayLabel.Size = new System.Drawing.Size(30, 13);
+            this.MaxDelayLabel.TabIndex = 16;
+            this.MaxDelayLabel.Text = "max:";
+            // 
+            // MinDelayLabel
+            // 
+            this.MinDelayLabel.AutoSize = true;
+            this.MinDelayLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MinDelayLabel.Location = new System.Drawing.Point(173, 51);
+            this.MinDelayLabel.Name = "MinDelayLabel";
+            this.MinDelayLabel.Size = new System.Drawing.Size(29, 13);
+            this.MinDelayLabel.TabIndex = 15;
+            this.MinDelayLabel.Text = "min:";
+            // 
+            // MinDelayTextBox
+            // 
+            this.MinDelayTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MinDelayTextBox.Depth = 0;
+            this.MinDelayTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.MinDelayTextBox.Hint = "ms";
+            this.MinDelayTextBox.LeadingIcon = null;
+            this.MinDelayTextBox.Location = new System.Drawing.Point(171, 4);
+            this.MinDelayTextBox.MaxLength = 50;
+            this.MinDelayTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.MinDelayTextBox.Multiline = false;
+            this.MinDelayTextBox.Name = "MinDelayTextBox";
+            this.MinDelayTextBox.Size = new System.Drawing.Size(74, 36);
+            this.MinDelayTextBox.TabIndex = 14;
+            this.MinDelayTextBox.Text = "";
+            this.MinDelayTextBox.TrailingIcon = null;
+            this.MinDelayTextBox.UseTallSize = false;
+            // 
             // WorkerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(468, 548);
             this.Controls.Add(this.ProxyCheckThrobberImageBox);
-            this.Controls.Add(this.LoadingPanel);
             this.Controls.Add(this.CurrentIpLabel);
             this.Controls.Add(this.MenuPanel);
+            this.Controls.Add(this.MaxDelayLabel);
             this.Controls.Add(this.BrowserPanel);
+            this.Controls.Add(this.MinDelayLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WorkerForm";
             this.Padding = new System.Windows.Forms.Padding(0, 64, 0, 0);
@@ -246,6 +289,7 @@ namespace FloatTool.Forms
             ((System.ComponentModel.ISupportInitialize)(this.ThrobberPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProxyCheckThrobberImageBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -256,12 +300,15 @@ namespace FloatTool.Forms
         private System.Windows.Forms.Panel MenuPanel;
         private System.Windows.Forms.Panel BrowserPanel;
         private MaterialSkin.Controls.MaterialButton ManualButton;
-        private MaterialSkin.Controls.MaterialTextBox DelayTextBox;
         private MaterialSkin.Controls.MaterialButton StopButton;
         private MaterialSkin.Controls.MaterialLabel CurrentIpLabel;
         private System.Windows.Forms.Panel LoadingPanel;
         private System.Windows.Forms.PictureBox ThrobberPictureBox;
         private MaterialSkin.Controls.MaterialLabel DataLabel;
         private System.Windows.Forms.PictureBox ProxyCheckThrobberImageBox;
+        private MaterialSkin.Controls.MaterialTextBox MaxDelayTextBox;
+        private System.Windows.Forms.Label MaxDelayLabel;
+        private MaterialSkin.Controls.MaterialTextBox MinDelayTextBox;
+        private System.Windows.Forms.Label MinDelayLabel;
     }
 }

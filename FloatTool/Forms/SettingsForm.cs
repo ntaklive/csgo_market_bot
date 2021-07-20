@@ -51,7 +51,8 @@ namespace FloatTool.Forms
                 }
 
             // Worker Default Settings
-            WorkerDefaultSettingsDelayTextBox.Text = currentSettings.Delay.ToString();
+            WorkerDefaultSettingsMinDelayTextBox.Text = currentSettings.MinDelay.ToString();
+            WorkerDefaultSettingsMaxDelayTextBox.Text = currentSettings.MaxDelay.ToString();
             WorkerDefaultSettingsAutoBuyCheckbox.Checked = currentSettings.AutoBuy;
 
             // --> *
@@ -85,17 +86,18 @@ namespace FloatTool.Forms
                     IsEnabled = JunkRemoverScriptSettingsEnabledCheckBox.Checked,
                 };
 
-                var proxyList = ProxyListControl.Items;
+                var proxyListItems = ProxyListControl.Items;
                 var proxySettings = new ProxySettings
                 {
                     IsEnabled = ProxyEnabledCheckBox.Checked,
-                    ProxyList = new ProxyList {Items = proxyList},
+                    ProxyList = new ProxyList {Items = proxyListItems },
                 };
 
                 var workerSettings = new WorkerSettings
                 {
                     AutoBuy = WorkerDefaultSettingsAutoBuyCheckbox.Checked,
-                    Delay = int.Parse(WorkerDefaultSettingsDelayTextBox.Text),
+                    MinDelay = int.Parse(WorkerDefaultSettingsMinDelayTextBox.Text),
+                    MaxDelay = int.Parse(WorkerDefaultSettingsMaxDelayTextBox.Text),
                     ParserScriptSettings = parserScriptSettings,
                     BuyScriptSettings = buyScriptSettings,
                     JunkRemoverSettings = junkRemoverSettings,
@@ -135,13 +137,13 @@ namespace FloatTool.Forms
             }
 
 
-            this.Close();
+            Close();
         }
 
         private void CancelOperationButton_Click(object sender, EventArgs e)
         {
             // Just window closing
-            this.Close();
+            Close();
         }
 
         private void ProxySettingsProxyListFromFileButton_Click(object sender, EventArgs e)

@@ -2,7 +2,8 @@
 {
     public struct WorkerSettings
     {
-        public int Delay { get; set; }
+        public int MinDelay { get; set; }
+        public int MaxDelay { get; set; }
         public bool AutoBuy { get; set; }
 
         public ParserScriptSettings ParserScriptSettings { get; set; }

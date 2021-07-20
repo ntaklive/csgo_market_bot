@@ -43,7 +43,7 @@ namespace FloatTool
                         rollingInterval: RollingInterval.Day,
                         rollOnFileSizeLimit: true)
                     .CreateLogger();
-            Log.Information("[{0}]: Logger configured successfully", Program.Label);
+            Log.Information("[{0}]: Logger configured successfully", Label);
         }
 
         /// <summary>

@@ -13,7 +13,8 @@ namespace FloatTool.Forms
         {
             InitializeComponent();
 
-            Browser = new ChromiumWebBrowser("https://steamcommunity.com/login")
+            const string url = "https://steamcommunity.com/login";
+            Browser = new ChromiumWebBrowser(url)
             {
                 BrowserSettings =
                 {
@@ -21,7 +22,6 @@ namespace FloatTool.Forms
                 },
                 Margin = Padding.Empty
             };
-            
             
             Controls.Add(Browser);
         }

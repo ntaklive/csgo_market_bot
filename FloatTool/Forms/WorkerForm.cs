@@ -21,6 +21,7 @@ namespace FloatTool.Forms
     {
         private static readonly BrowserLifeSpanHandler BrowserLifeSpanHandler = new();
         private static readonly HttpClient HttpClient = new ();
+        private static readonly Random Random = new ();
 
         private readonly RequestContextSettings _requestContextSettings = new() { CachePath = GlobalFolders.CacheFolderPath };
         private readonly WorkerParams _parameters;
@@ -114,7 +115,8 @@ namespace FloatTool.Forms
 
             // UI settings
             AutoBuyCheckbox.Checked = _settings.AutoBuy;
-            DelayTextBox.Text = _settings.Delay.ToString();
+            MinDelayTextBox.Text = _settings.MinDelay.ToString();
+            MaxDelayTextBox.Text = _settings.MaxDelay.ToString();
             BrowserPanel.Controls.Add(_browser);
             DataLabel.Text = $"P:{_parameters.Price}|F:{_parameters.Float}";
 
@@ -134,7 +136,7 @@ namespace FloatTool.Forms
                         Controls.Remove(LoadingPanel);
                     });
 
-                    Log.Debug("[{0}]: Page '{1}' successfully loaded", this.Text, _browser.GetMainFrame().Url);
+                    Log.Debug("[{0}]: Page '{1}' successfully loaded", Text, _browser.GetMainFrame().Url);
                 }
             };
         }
@@ -148,7 +150,8 @@ namespace FloatTool.Forms
         {
             try
             {
-                _settings.Delay = int.Parse(DelayTextBox.Text);
+                _settings.MinDelay = int.Parse(MinDelayTextBox.Text);
+                _settings.MaxDelay = int.Parse(MaxDelayTextBox.Text);
             }
             catch
             {
@@ -160,6 +163,7 @@ namespace FloatTool.Forms
         {
             try
             {
+                Log.Debug("[{0}]: Manual update", Text);
                 await ProcessAsync();
             }
             catch (Exception exception)
@@ -177,12 +181,26 @@ namespace FloatTool.Forms
                 AutoButton.Hide();
                 StopButton.Show();
 
-                var delayValue = _settings.Delay;
+                int GetRandomDelay()
+                {
+                    // ReSharper disable once ConvertIfStatementToReturnStatement
+                    if (_settings.MinDelay == _settings.MaxDelay)
+                    {
+                        return _settings.MinDelay;
+                    }
+
+                    return Random.Next(_settings.MinDelay, _settings.MaxDelay);
+                }
+
                 while (_isAutoProcessing)
                 {
                     await ProcessAsync();
-                    await Task.Delay(delayValue);
+                    var delay = GetRandomDelay();
+                    Log.Debug("[{0}]: Waiting for {1} milliseconds ", Text, delay);
+                    await Task.Delay(delay);
+                    Log.Debug("[{0}]: The wait is over. Trying to send a new request.", Text);
                 }
+                Log.Debug("[{0}]: Auto-update stopped successfully", Text);
 
                 AutoButton.Show();
                 StopButton.Hide();
@@ -255,7 +273,7 @@ namespace FloatTool.Forms
                                     CloseWindowDelay = _settings.BuyScriptSettings.CloseWindowDelay
                                 });
                                 _browser.GetMainFrame().ExecuteJavaScriptAsync(buyListingScript);
-                                Log.Debug("[{0}]: Notification ='{1}' Data='{2}'", this.Text, "Successfully purchased", data);
+                                Log.Information("[{0}]: Notification ='{1}' Data='{2}'", Text, "Successfully purchased", data);
                                 continue;
                             }
 
@@ -267,7 +285,7 @@ namespace FloatTool.Forms
                             var notificatorScript = ScriptsBuilder.BuildNotificatorScript(notificatorScriptParams);
                             _browser.GetMainFrame().ExecuteJavaScriptAsync(notificatorScript);
                         }
-                        Log.Debug("[{0}]: IsValid='{1}' Data='{2}'", this.Text, isValid, data);
+                        Log.Debug("[{0}]: IsValid='{1}' Data='{2}'", Text, isValid, data);
                     }
                     _browser.JavascriptMessageReceived -= JavascriptMessageReceivedHandler;
                     _isWorking = false;
@@ -279,14 +297,14 @@ namespace FloatTool.Forms
             }
 
             _browser.GetMainFrame().ExecuteJavaScriptAsync(_parserScript);
-            Log.Debug("[{0}]: Receiving data from Steam servers", this.Text);
+            Log.Debug("[{0}]: Receiving data from Steam servers", Text);
             _isWorking = true;
 
             while (_isWorking)
             {
                 await Task.Delay(100, token);
             }
-            Log.Debug("[{0}]: Listings have been successfully updated", this.Text);
+            Log.Debug("[{0}]: Listings have been successfully updated", Text);
         }
     }
 }
