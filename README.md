@@ -9,12 +9,19 @@ A program designed to automate the purchase of CS:GO weapons on the steam market
 ## How to add weapon to list:
 1) Go to the steam market weapon page ([like this](https://steamcommunity.com/market/listings/730/P250%20|%20Boreal%20Forest%20(Field-Tested))).
 2) Copy any '[Inspect in Game...](steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M4421956023454017443A22947280464D5045336153953192904)' link and put this into 'Link' text box.
-3) ...
-4) Profit!
+3) Enter the upper limit of the 'float' value.
+4) Enter the upper limit of the 'price' value.
+```
+## !!! Important !!!
+It is necessary to indicate the 'price' in the same 'currency' as specified in the settings 
+```
 
 ## How do I sign in to my account? 
 1) Go to "settings" and click "account".
 2) Log in to your account.
+
+## How to add multiple identical weapons?
+Hold 'CTRL' and press 'ADD'.
 
 ## Parser Script Settings:
 ```
@@ -49,8 +56,6 @@ Filter: [sticker, ...] - Search filter.
 and other...
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## License
 MIT License
