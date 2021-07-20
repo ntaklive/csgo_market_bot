@@ -133,7 +133,7 @@ namespace FloatTool.Forms
                 {
                     LoadingPanel.Invoke((MethodInvoker)delegate {
                         // Running on the UI thread
-                        Controls.Remove(LoadingPanel);
+                        LoadingPanel.Dispose();
                     });
 
                     Log.Debug("[{0}]: Page '{1}' successfully loaded", Text, _browser.GetMainFrame().Url);
