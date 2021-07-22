@@ -242,7 +242,12 @@ namespace FloatTool.Forms
             {
                 try
                 {
-                    var parseScriptResponse = JsonConvert.DeserializeObject<ParserScriptResponse>((string)eventArgs.Message);
+                    var response = JsonConvert.DeserializeObject((string)eventArgs.Message);
+
+                    if (response is not ParserScriptResponse parseScriptResponse)
+                    {
+                        throw new ArgumentException("Updating error");
+                    }
 
                     var itemsBuyData = new List<ListingData>();
                     for (var i = 0; i < parseScriptResponse!.Links.Count; i++)
@@ -300,7 +305,7 @@ namespace FloatTool.Forms
                 }
                 catch (Exception exception)
                 {
-                    Log.Warning(exception.ToString());
+                    Log.Warning("[{0}]: " + exception.Message, Text);
                 }
             }
 

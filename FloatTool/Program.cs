@@ -66,8 +66,6 @@ namespace FloatTool
             settings.CefCommandLineArgs.Add("enable-webgl", "0");
             settings.CefCommandLineArgs.Add("enable-begin-frame-scheduling", "0");
             settings.CefCommandLineArgs.Add("--off-screen-frame-rate", "60");
-            //settings.CefCommandLineArgs.Add("–disable-web-security", "1");//Turn off the same-origin policy and allow cross-domain
-            settings.CefCommandLineArgs.Add("–enable-system-flash", "1");//Use system flash
             settings.CefCommandLineArgs.Add("disable-gpu", "1");//Remove the gpu, otherwise chrome display problems
             Cef.Initialize(settings);
         }
