@@ -203,7 +203,6 @@ namespace FloatTool.Forms
             // BrowserPanel
             // 
             this.BrowserPanel.Controls.Add(this.DataLabel);
-            this.BrowserPanel.Controls.Add(this.LoadingPanel);
             this.BrowserPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BrowserPanel.Location = new System.Drawing.Point(0, 107);
             this.BrowserPanel.Name = "BrowserPanel";
@@ -226,11 +225,10 @@ namespace FloatTool.Forms
             // LoadingPanel
             // 
             this.LoadingPanel.Controls.Add(this.ThrobberPictureBox);
-            this.LoadingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadingPanel.Location = new System.Drawing.Point(0, 0);
+            this.LoadingPanel.Location = new System.Drawing.Point(0, 64);
             this.LoadingPanel.Margin = new System.Windows.Forms.Padding(0);
             this.LoadingPanel.Name = "LoadingPanel";
-            this.LoadingPanel.Size = new System.Drawing.Size(468, 441);
+            this.LoadingPanel.Size = new System.Drawing.Size(468, 484);
             this.LoadingPanel.TabIndex = 5;
             // 
             // ThrobberPictureBox
@@ -240,7 +238,7 @@ namespace FloatTool.Forms
             this.ThrobberPictureBox.Image = global::FloatTool.Properties.Resources.throbber;
             this.ThrobberPictureBox.Location = new System.Drawing.Point(0, 0);
             this.ThrobberPictureBox.Name = "ThrobberPictureBox";
-            this.ThrobberPictureBox.Size = new System.Drawing.Size(468, 441);
+            this.ThrobberPictureBox.Size = new System.Drawing.Size(468, 484);
             this.ThrobberPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.ThrobberPictureBox.TabIndex = 0;
             this.ThrobberPictureBox.TabStop = false;
@@ -275,6 +273,7 @@ namespace FloatTool.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(468, 548);
+            this.Controls.Add(this.LoadingPanel);
             this.Controls.Add(this.ProxyCheckThrobberImageBox);
             this.Controls.Add(this.CurrentIpLabel);
             this.Controls.Add(this.MenuPanel);

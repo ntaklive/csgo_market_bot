@@ -242,9 +242,12 @@ namespace FloatTool.Forms
             {
                 try
                 {
-                    var response = JsonConvert.DeserializeObject((string)eventArgs.Message);
-
-                    if (response is not ParserScriptResponse parseScriptResponse)
+                    ParserScriptResponse parseScriptResponse = null;
+                    try
+                    {
+                        parseScriptResponse = JsonConvert.DeserializeObject<ParserScriptResponse>((string) eventArgs.Message);
+                    }
+                    catch
                     {
                         throw new ArgumentException("Updating error");
                     }
@@ -286,7 +289,8 @@ namespace FloatTool.Forms
                                     CloseWindowDelay = _settings.BuyScriptSettings.CloseWindowDelay
                                 });
                                 _browser.GetMainFrame().ExecuteJavaScriptAsync(buyListingScript);
-                                Log.Information("[{0}]: Notification ='{1}' Data='{2}'", Text, "Successfully purchased", data);
+                                Log.Information("[{0}]: Notification ='{1}' Data='{2}'", Text, "Successfully purchased",
+                                    data);
                                 continue;
                             }
 
@@ -298,14 +302,21 @@ namespace FloatTool.Forms
                             var notificatorScript = ScriptsBuilder.BuildNotificatorScript(notificatorScriptParams);
                             _browser.GetMainFrame().ExecuteJavaScriptAsync(notificatorScript);
                         }
+
                         Log.Debug("[{0}]: IsValid='{1}' Data='{2}'", Text, isValid, data);
                     }
-                    _browser.JavascriptMessageReceived -= JavascriptMessageReceivedHandler;
+
+                    
                     _isWorking = false;
                 }
                 catch (Exception exception)
                 {
                     Log.Warning("[{0}]: " + exception.Message, Text);
+                }
+                finally
+                {
+                    _browser.JavascriptMessageReceived -= JavascriptMessageReceivedHandler;
+                    _isWorking = false;
                 }
             }
 
@@ -317,7 +328,7 @@ namespace FloatTool.Forms
             {
                 await Task.Delay(100, token);
             }
-            Log.Debug("[{0}]: Listings have been successfully updated", Text);
+            Log.Debug("[{0}]: Operation completed successfully ", Text);
         }
 
         private void MinDelayTextBox_TextChanged(object sender, EventArgs e)
