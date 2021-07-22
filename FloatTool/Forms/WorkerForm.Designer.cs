@@ -279,6 +279,7 @@ namespace FloatTool.Forms
             this.Controls.Add(this.MenuPanel);
             this.Controls.Add(this.BrowserPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "WorkerForm";
             this.Padding = new System.Windows.Forms.Padding(0, 64, 0, 0);
             this.Sizable = false;

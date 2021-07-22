@@ -181,7 +181,6 @@ namespace FloatTool.Forms
             this.Controls.Add(this.AddItemButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "MainWindowForm";
             this.Sizable = false;
             this.Text = "CS:GO Float Tool";

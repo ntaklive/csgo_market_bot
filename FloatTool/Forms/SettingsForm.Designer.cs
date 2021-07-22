@@ -60,14 +60,14 @@ namespace FloatTool.Forms
             this.ProxySettingsProxyListFromFileButton = new MaterialSkin.Controls.MaterialButton();
             this.ProxyEnabledCheckBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.WorkerDefaultSettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.WorkerDefaultSettingsMaxDelayLabel = new System.Windows.Forms.Label();
+            this.WorkerDefaultSettingsMaxDelayTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.WorkerDefaultSettingsMinDelayLabel = new System.Windows.Forms.Label();
             this.WorkerDefaultSettingsDelayLabel = new MaterialSkin.Controls.MaterialLabel();
             this.WorkerDefaultSettingsMinDelayTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.WorkerDefaultSettingsAutoBuyCheckbox = new MaterialSkin.Controls.MaterialCheckbox();
             this.ProxySettingsProxyListFileOpenDialog = new System.Windows.Forms.OpenFileDialog();
             this.LoginButton = new MaterialSkin.Controls.MaterialButton();
-            this.WorkerDefaultSettingsMinDelayLabel = new System.Windows.Forms.Label();
-            this.WorkerDefaultSettingsMaxDelayLabel = new System.Windows.Forms.Label();
-            this.WorkerDefaultSettingsMaxDelayTextBox = new MaterialSkin.Controls.MaterialTextBox();
             this.ParserSettingsGroupBox.SuspendLayout();
             this.BuyScriptSettingsGroupBox.SuspendLayout();
             this.JunkRemoverScriptSettingsGroupBox.SuspendLayout();
@@ -585,6 +585,44 @@ namespace FloatTool.Forms
             this.WorkerDefaultSettingsGroupBox.TabStop = false;
             this.WorkerDefaultSettingsGroupBox.Text = "Worker Default Settings";
             // 
+            // WorkerDefaultSettingsMaxDelayLabel
+            // 
+            this.WorkerDefaultSettingsMaxDelayLabel.AutoSize = true;
+            this.WorkerDefaultSettingsMaxDelayLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WorkerDefaultSettingsMaxDelayLabel.Location = new System.Drawing.Point(140, 89);
+            this.WorkerDefaultSettingsMaxDelayLabel.Name = "WorkerDefaultSettingsMaxDelayLabel";
+            this.WorkerDefaultSettingsMaxDelayLabel.Size = new System.Drawing.Size(30, 13);
+            this.WorkerDefaultSettingsMaxDelayLabel.TabIndex = 12;
+            this.WorkerDefaultSettingsMaxDelayLabel.Text = "max:";
+            // 
+            // WorkerDefaultSettingsMaxDelayTextBox
+            // 
+            this.WorkerDefaultSettingsMaxDelayTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.WorkerDefaultSettingsMaxDelayTextBox.Depth = 0;
+            this.WorkerDefaultSettingsMaxDelayTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.WorkerDefaultSettingsMaxDelayTextBox.Hint = "ms";
+            this.WorkerDefaultSettingsMaxDelayTextBox.LeadingIcon = null;
+            this.WorkerDefaultSettingsMaxDelayTextBox.Location = new System.Drawing.Point(143, 63);
+            this.WorkerDefaultSettingsMaxDelayTextBox.MaxLength = 50;
+            this.WorkerDefaultSettingsMaxDelayTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.WorkerDefaultSettingsMaxDelayTextBox.Multiline = false;
+            this.WorkerDefaultSettingsMaxDelayTextBox.Name = "WorkerDefaultSettingsMaxDelayTextBox";
+            this.WorkerDefaultSettingsMaxDelayTextBox.Size = new System.Drawing.Size(74, 36);
+            this.WorkerDefaultSettingsMaxDelayTextBox.TabIndex = 13;
+            this.WorkerDefaultSettingsMaxDelayTextBox.Text = "";
+            this.WorkerDefaultSettingsMaxDelayTextBox.TrailingIcon = null;
+            this.WorkerDefaultSettingsMaxDelayTextBox.UseTallSize = false;
+            // 
+            // WorkerDefaultSettingsMinDelayLabel
+            // 
+            this.WorkerDefaultSettingsMinDelayLabel.AutoSize = true;
+            this.WorkerDefaultSettingsMinDelayLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WorkerDefaultSettingsMinDelayLabel.Location = new System.Drawing.Point(56, 88);
+            this.WorkerDefaultSettingsMinDelayLabel.Name = "WorkerDefaultSettingsMinDelayLabel";
+            this.WorkerDefaultSettingsMinDelayLabel.Size = new System.Drawing.Size(29, 13);
+            this.WorkerDefaultSettingsMinDelayLabel.TabIndex = 11;
+            this.WorkerDefaultSettingsMinDelayLabel.Text = "min:";
+            // 
             // WorkerDefaultSettingsDelayLabel
             // 
             this.WorkerDefaultSettingsDelayLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -606,7 +644,7 @@ namespace FloatTool.Forms
             // 
             this.WorkerDefaultSettingsMinDelayTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.WorkerDefaultSettingsMinDelayTextBox.Depth = 0;
-            this.WorkerDefaultSettingsMinDelayTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.WorkerDefaultSettingsMinDelayTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.WorkerDefaultSettingsMinDelayTextBox.Hint = "ms";
             this.WorkerDefaultSettingsMinDelayTextBox.LeadingIcon = null;
             this.WorkerDefaultSettingsMinDelayTextBox.Location = new System.Drawing.Point(59, 63);
@@ -663,44 +701,6 @@ namespace FloatTool.Forms
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.AccountButton_Click);
             // 
-            // WorkerDefaultSettingsMinDelayLabel
-            // 
-            this.WorkerDefaultSettingsMinDelayLabel.AutoSize = true;
-            this.WorkerDefaultSettingsMinDelayLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WorkerDefaultSettingsMinDelayLabel.Location = new System.Drawing.Point(56, 88);
-            this.WorkerDefaultSettingsMinDelayLabel.Name = "WorkerDefaultSettingsMinDelayLabel";
-            this.WorkerDefaultSettingsMinDelayLabel.Size = new System.Drawing.Size(29, 13);
-            this.WorkerDefaultSettingsMinDelayLabel.TabIndex = 11;
-            this.WorkerDefaultSettingsMinDelayLabel.Text = "min:";
-            // 
-            // WorkerDefaultSettingsMaxDelayLabel
-            // 
-            this.WorkerDefaultSettingsMaxDelayLabel.AutoSize = true;
-            this.WorkerDefaultSettingsMaxDelayLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WorkerDefaultSettingsMaxDelayLabel.Location = new System.Drawing.Point(140, 89);
-            this.WorkerDefaultSettingsMaxDelayLabel.Name = "WorkerDefaultSettingsMaxDelayLabel";
-            this.WorkerDefaultSettingsMaxDelayLabel.Size = new System.Drawing.Size(30, 13);
-            this.WorkerDefaultSettingsMaxDelayLabel.TabIndex = 12;
-            this.WorkerDefaultSettingsMaxDelayLabel.Text = "max:";
-            // 
-            // WorkerDefaultSettingsMaxDelayTextBox
-            // 
-            this.WorkerDefaultSettingsMaxDelayTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.WorkerDefaultSettingsMaxDelayTextBox.Depth = 0;
-            this.WorkerDefaultSettingsMaxDelayTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.WorkerDefaultSettingsMaxDelayTextBox.Hint = "ms";
-            this.WorkerDefaultSettingsMaxDelayTextBox.LeadingIcon = null;
-            this.WorkerDefaultSettingsMaxDelayTextBox.Location = new System.Drawing.Point(143, 63);
-            this.WorkerDefaultSettingsMaxDelayTextBox.MaxLength = 50;
-            this.WorkerDefaultSettingsMaxDelayTextBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.WorkerDefaultSettingsMaxDelayTextBox.Multiline = false;
-            this.WorkerDefaultSettingsMaxDelayTextBox.Name = "WorkerDefaultSettingsMaxDelayTextBox";
-            this.WorkerDefaultSettingsMaxDelayTextBox.Size = new System.Drawing.Size(74, 36);
-            this.WorkerDefaultSettingsMaxDelayTextBox.TabIndex = 13;
-            this.WorkerDefaultSettingsMaxDelayTextBox.Text = "";
-            this.WorkerDefaultSettingsMaxDelayTextBox.TrailingIcon = null;
-            this.WorkerDefaultSettingsMaxDelayTextBox.UseTallSize = false;
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -716,7 +716,6 @@ namespace FloatTool.Forms
             this.Controls.Add(this.ParserSettingsGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.Sizable = false;
             this.Text = "Global Settings";
