@@ -1,4 +1,4 @@
-# Go Float Tool
+# CS:GO market bot
 
 A program designed to automate the purchase of CS:GO weapons on the steam market with a certain float value.
 
